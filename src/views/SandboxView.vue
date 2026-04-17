@@ -231,7 +231,7 @@ const hotSearchList = ref([
 
 const updateHotSearchList = () => {
   const shuffled = [...hotSearchTitles].sort(() => Math.random() - 0.5)
-  hotSearchList.value = shuffled.slice(0, 8).map((title, index) => ({
+  hotSearchList.value = shuffled.slice(0, 8).map((title) => ({
     title,
     heat: Math.floor(Math.random() * 8000000) + 1000000,
     trend: Math.floor(Math.random() * 30) - 10
