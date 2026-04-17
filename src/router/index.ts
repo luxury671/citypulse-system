@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: () => import('../views/HomeView.vue'),
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
   {
     path: '/dashboard',
@@ -52,7 +52,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/citypulse-system/'),
   routes
 })
 
@@ -60,17 +60,13 @@ const router = createRouter({
 router.beforeEach((to, _, next) => {
   const userStore = useUserStore()
   
-  // 检查用户登录状态
   userStore.checkLogin()
   
   if (to.meta.requiresAuth && !userStore.isLoggedIn) {
-    // 需要登录但未登录，跳转到登录页
     next('/login')
   } else if (to.path === '/login' && userStore.isLoggedIn) {
-    // 已登录且访问登录页，跳转到首页
     next('/')
   } else {
-    // 正常访问
     next()
   }
 })
