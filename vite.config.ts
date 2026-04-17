@@ -27,6 +27,7 @@ export default defineConfig({
       ]
     })
   ],
+  base: '/citypulse-system/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
